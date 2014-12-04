@@ -1,0 +1,1 @@
+itemID,sku,description,size,color

@@ -41,3 +41,20 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
+
+# Project Files
+# =========================
+data/store1/
+data/store2/
+data/store3/
+data/store6/
+data/store7/
+data/store8/
+data/store10/
+data/store12/
+data/store13/
+data/store15/
+data/store16/
+data/store17/
+data/sales/
+sql/

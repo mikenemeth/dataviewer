@@ -1,0 +1,14 @@
+InvoiceDate, Invoice Date
+InvoiceNum, Invoice No.
+company, SoldTo
+accountNum, Account No.
+customer, ShipTo
+item, Item
+vendor, Vendor
+color, Color
+size, Size
+description, Description
+soldQty, Sold Qty
+cost, Cost
+retail, Retail
+actual, Actual
