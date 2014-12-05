@@ -19,8 +19,8 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Sales<span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
 				<li><a href="#">Overview</a></li>
-                <li><a href="#">Month to Date</a></li>
-                <li><a href="#">Year to Date</a></li>
+                <li><a href="#">Sales by Division</a></li>
+                <li><a href="#">Sales by Store</a></li>
                 <li><a href="#">Something else here</a></li>
                 <li class="divider"></li>
                 <li class="dropdown-header">Store Sales</li>
@@ -33,8 +33,8 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Inventory<span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
                 <li><a href="#">Overview</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
+                <li><a href="#">Inventory by Store</a></li>
+                <li><a href="#">Inventory Analysis</a></li>
                 <li class="divider"></li>
                 <li class="dropdown-header">Nav header</li>
                 <li><a href="#">Separated link</a></li>
@@ -45,9 +45,9 @@
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Behaviors<span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
+                <li><a href="#">Overview</a></li>
+                <li><a href="#">Truck Customer Buying</a></li>
+                <li><a href="#">B2B Buying</a></li>
                 <li class="divider"></li>
                 <li class="dropdown-header">Nav header</li>
                 <li><a href="#">Separated link</a></li>

@@ -37,7 +37,7 @@
 			<strong>Heads up!</strong> This reporting system is still under development. Please report any issues to Mike.
 		</div>
 	  
-	  <?php include('reports/discounts.php'); ?>
+	  <?php include('reports/inventory.php'); ?>
 
 	  <div class="well">
         <p>HUS Report Viewer. &copy;2014 Healthcare Uniform Solutions. Developed by Mike Nemeth</p>
