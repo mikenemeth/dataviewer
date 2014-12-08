@@ -1,12 +1,17 @@
  <?php
 require_once('config/config.php');
 require_once('class/database.class.php');
-require_once('class/dataupload.class.php');
+require_once('class/query.class.php');
+require_once('class/display.class.php');
 ?>
 
 
 <?php
 $database = new Database();
+$query = new Query($database);
+
+$year = 2014;
+$storeArray = array(1,3,6,10,12,13,15,16,17);
 
 $database->query(
 	"SELECT YEAR(invoiceDate) as Year, SUM(retail) AS Retail, SUM(actual) AS Actual, SUM(Retail-Actual) AS Discount 
@@ -80,6 +85,15 @@ $allStoreRows = $database->resultSet();
           </div>
 		 </div> <!-- col-sm-3 -->
       </div>
+	  
+	  <div class='row'>
+		<div class='col-sm-3'>
+			<?php
+				$row = $query->get_total_sales_single_year($year, $storeArray);
+				echo '<h4>' . Display::displayPanel('Total Sales', $row) . '</h4>';
+			?>
+		</div>	
+	  </div>
 
 
       <div class="page-header">
