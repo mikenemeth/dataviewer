@@ -1,71 +1,40 @@
  <?php
 require_once('../config/config.php');
 require_once('../class/database.class.php');
-require_once('../class/dataupload.class.php');
-require_once('../class/display.class.php');
 require_once('../class/query.class.php');
-
-$database = new Database();
-$query = new Query($database);
-
-$stores = array(12);
-$dates = array('14-09-01', '14-12-01');
-$vendors = array("'CHE'", "'KOI'", "'WKS'");
+require_once('../class/display.class.php');
 ?>
-	  <div class="page-header">
-        <h1>Inventory by Store <small>Report generated Dec. 1, 2014</small></h1>
-      </div>
-
+    <div class="page-header">
+        <h1>Inventory Overview</h1>
+    </div>
+<div id="controls">	  
 	<div class="row">
-		<div class="col-md-6" method="get">
-			<form action="">
-				<fieldset >
-					<label for="storeSelect">Store Selector</label>
-					<select class="form-control">
-						<?php
-							foreach($query->get_store_list()  as $row){
-								foreach($row as $field=>$value){
-									echo "<option>" . $value . "</option>";
-								}
-							}
-						?>
-					</select>
-					<button type="submit" class="btn btn-default" value="">Show Report</button>
-				</fieldset>
-			</form>
-		</div>
-	</div>
+		<form role="form" action="" method="get">	
 
-      <div class="page-header">
-        <h2>Store Inventory Analysis</h2>
-      </div>
-		
-		<?php
-		$headings = array('Vendor', 'In Stock', 'On Order', 'Min/Max');
-		foreach($stores as $store) {
-			echo '<div class="row"><h3>Store ' . $store .  '</h3>';
-			echo '<div class="col-sm-6">';
-				$rows = $query->get_inventory_qty_stock_order_minmax_by_store($store, $vendors);
-				Display::displayTable($headings, $rows);
-			echo "</div>";
-			echo "</div>";
-		}
-		
-		?>
-		
-      <div class="page-header">
-        <h2>Store Items on Min/Max</h2>
-      </div>
-		
-		<?php
-		$headings = array('Vendor', 'In Stock', 'On Order', 'Min/Max');
-		foreach($stores as $store) {
-			echo '<div class="row"><h3>Store ' . $store .  '</h3>';
-			echo '<div class="col-sm-6">';
-				$rows = $query->get_inventory_by_store($store, $vendors);
-				Display::displayTable($headings, $rows);
-			echo "</div>";
-			echo "</div>";
-		}
-		
-		?>
+			<div class="col-md-8">
+				<fieldset>
+					<div class="form-group">
+					<label for="stores">Select Stores</label>
+					<div id="dateRange" class="btn-group" role="group">
+						<button type="button" class="btn btn-default" onclick="reportGet('reports/inventoryoverview.php', 1)">1</button>
+						<button type="button" class="btn btn-default" onclick="reportGet('reports/inventoryoverview.php', 3)">3</button>
+						<button type="button" class="btn btn-default" onclick="reportGet('reports/inventoryoverview.php', 6)">6</button>
+						<button type="button" class="btn btn-default" onclick="reportGet('reports/inventoryoverview.php', 10)">10</button>
+						<button type="button" class="btn btn-default" onclick="reportGet('reports/inventoryoverview.php', 12)">12</button>
+						<button type="button" class="btn btn-default" onclick="reportGet('reports/inventoryoverview.php', 13)">13</button>
+						<button type="button" class="btn btn-default" onclick="reportGet('reports/inventoryoverview.php', 15)">15</button>
+						<button type="button" class="btn btn-default" onclick="reportGet('reports/inventoryoverview.php', 16)">16</button>
+						<button type="button" class="btn btn-default" onclick="reportGet('reports/inventoryoverview.php', 17)">17</button>
+						<button type="button" class="btn btn-default" onclick="reportGet('reports/inventoryoverview.php')">All Trucks</button>
+					</div>
+					</div>
+				</fieldset>
+				</div>
+				
+		</form>
+	</div>
+</div>
+
+<div id="reportContainer">
+	<p>Default Content.</p>
+</div>

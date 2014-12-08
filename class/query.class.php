@@ -56,9 +56,9 @@ class Query {
 		return $this->db->resultset();
 	}
 
-	public function get_store_list($store) {
+	public function get_store_list() {
 		$this->db->query(
-			"SELECT name FROM `store`;"
+			"SELECT id FROM `store`;"
 		);
 		$this->db->execute();
 		return $this->db->resultset();

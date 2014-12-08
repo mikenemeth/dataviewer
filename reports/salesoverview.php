@@ -5,8 +5,14 @@ require_once('../class/query.class.php');
 require_once('../class/display.class.php');
 ?>
 
-
 <?php
+if(isset($_GET['store'])) {
+	$store = $_GET['store'];
+}
+else {
+	echo "Failed.";
+}
+
 $database = new Database();
 $query = new Query($database);
 
@@ -19,6 +25,7 @@ $dateRange = array('14-11-01', '14-11-30');
       <div class="page-header">
         <h1>Sales Overview for Nov 01, 2014 - Nov 30, 2014</h1>
       </div>
+	  
 
       <div class="page-header">
         <h3>Truck Sales</h3>
