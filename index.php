@@ -6,7 +6,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>Healthcare Uniform Solutions Dataviewer</title>
+    <title>Healthcare Uniform Solutions Data Viewer</title>
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -39,10 +39,8 @@
 	  
 	  <div id="content">
 	  </div>
-
-	  <div class="well">
-        <p>HUS Report Viewer. &copy;2014 Healthcare Uniform Solutions. Developed by Mike Nemeth</p>
-      </div>
+	  
+	  <div id="ajaxLoading"><img src="img/ajax-loader.gif" /><h3>Loading data...</h3></div>
 
     </div> <!-- /container -->
 

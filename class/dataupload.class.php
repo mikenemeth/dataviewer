@@ -255,7 +255,7 @@ Convert short date to MySql date
 				"INSERT INTO items (`sku`, `description`, `size`, `color`, `vendorID`, `dept`, `code`) 
 				VALUES ( :sku, :description, :size, :color, (SELECT id FROM vendors WHERE `code`=:vendor), :dept, :code) 
 				ON DUPLICATE KEY 
-				UPDATE `sku`=:sku, `description`=:description, `size`=:size, `color`=:color, `vendorID`=(SELECT id FROM vendors WHERE `code`=:vendor), :dept, :code"
+				UPDATE `sku`=:sku, `description`=:description, `size`=:size, `color`=:color, `vendorID`=(SELECT id FROM vendors WHERE `code`=:vendor), `dept`=:dept, `code`=:code"
 			);
 					
 			$database->bind(':sku', $sku );
@@ -264,7 +264,7 @@ Convert short date to MySql date
 			$database->bind(':color', $record{'Color'});
 			$database->bind(':vendor', $record{'Vendor'});
 			$database->bind(':dept', $record{'Depart'});
-			$databse->bind(':code', $record{'Code'});
+			$database->bind(':code', $record{'Code'});
 
 			$database->execute();
 			if($database->lastInsertId()) {

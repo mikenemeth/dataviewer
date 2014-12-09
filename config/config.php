@@ -16,19 +16,19 @@ define('DB_PASSWORD', 'webdev');
 define('VERSION', 'v0.1');
 
 // Input file directories
-define('STORE_1', 'data/store1/');
-define('STORE_2', 'data/store2/');
-define('STORE_3', 'data/store3/');
-define('STORE_6', 'data/store6/');
-define('STORE_7', 'data/store7/');
-define('STORE_8', 'data/store8/');
-define('STORE_10', 'data/store10/');
-define('STORE_11', 'data/store11/');
-define('STORE_12', 'data/store12/');
-define('STORE_13', 'data/store13/');
-define('STORE_15', 'data/store15/');
-define('STORE_16', 'data/store16/');
-define('STORE_17', 'data/store17/');
+define('STORE_1', 'data/store 1/');
+define('STORE_2', 'data/store 2/');
+define('STORE_3', 'data/store 3/');
+define('STORE_6', 'data/store 6/');
+define('STORE_7', 'data/store 7/');
+define('STORE_8', 'data/store 8/');
+define('STORE_10', 'data/store 10/');
+define('STORE_11', 'data/store 11/');
+define('STORE_12', 'data/store 12/');
+define('STORE_13', 'data/store 13/');
+define('STORE_15', 'data/store 15/');
+define('STORE_16', 'data/store 16/');
+define('STORE_17', 'data/store 17/');
 
 //	Inventory file names
 define('INVENTORY_FILE', 'InventoryList.csv');

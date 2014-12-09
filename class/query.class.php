@@ -20,7 +20,7 @@ class Query {
 	
 	public function get_inventory_qty_stock_order_minmax_by_store($stores, $vendorArray) {
 		if(is_array($stores)) {
-			implode(",", $stores);
+			$stores = implode(",", $stores);
 		}
 		$this->db->query(
 			"SELECT vendors.code AS Vendor, SUM(inventory.instock) AS InStock, SUM(inventory.onorder) AS OnOrder, SUM(inventory.min) AS MinMax
@@ -80,7 +80,7 @@ class Query {
 	
 	public function get_sales_by_store_by_daterange($stores, $dateArray) {
 		if(is_array($stores)) {
-			implode(",", $stores);
+			$stores = implode(",", $stores);
 		}
 		
 		$this->db->query(
@@ -100,6 +100,27 @@ class Query {
 			$result[$field]['Percent'] = number_format($value['Percent'],2) . '%';
 		}
 		return $result;
+	}
+	
+	public function get_print_top_inventory_by_size($code) {
+		$this->db->query(
+			"SELECT inventory.storeID AS Store, 
+			SUM(IF(items.size='XS',1,0)) AS 'XS', 
+			SUM(IF(items.size='S',1,0)) AS 'S', 
+			SUM(IF(items.size='M',1,0)) AS 'M', 
+			SUM(IF(items.size='L',1,0)) AS 'L', 
+			SUM(IF(items.size='XL',1,0)) AS 'XL', 
+			SUM(IF(items.size='2XL',1,0)) AS '2XL', 
+			SUM(IF(items.size='3XL',1,0)) AS '3XL', 
+			SUM(IF(items.size='4XL',1,0)) AS '4XL', 
+			SUM(IF(items.size='5XL',1,0)) AS '5XL' 
+			FROM `inventory` 
+			INNER JOIN `items` ON inventory.itemID=items.id 
+			WHERE inventory.instock>0 AND items.code='" . $code . "' AND inventory.storeID IN (1,3,6,10,12,13,15,16,17) 
+			GROUP BY inventory.storeID"
+		);
+		$this->db->execute();
+		return $this->db->resultSet();
 	}
 	
 }
