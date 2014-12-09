@@ -44,15 +44,15 @@ require_once('../class/display.class.php');
 					<div class="form-group">
 					<label for="stores">Select Stores</label>
 					<div id="dateRange" class="btn-group" role="group">
-						<button type="button" class="btn btn-default" onclick="">1</button>
-						<button type="button" class="btn btn-default" onclick="">3</button>
-						<button type="button" class="btn btn-default" onclick="">6</button>
-						<button type="button" class="btn btn-default" onclick="">10</button>
-						<button type="button" class="btn btn-default" onclick="">12</button>
-						<button type="button" class="btn btn-default" onclick="">13</button>
-						<button type="button" class="btn btn-default" onclick="">15</button>
-						<button type="button" class="btn btn-default" onclick="">16</button>
-						<button type="button" class="btn btn-default" onclick="">17</button>
+						<button type="button" class="btn btn-default" onclick="reportGet('reports/salesyoverview.php', 1)">1</button>
+						<button type="button" class="btn btn-default" onclick="reportGet('reports/inventoryoverview.php', 3)">3</button>
+						<button type="button" class="btn btn-default" onclick="reportGet('reports/inventoryoverview.php', 6)">6</button>
+						<button type="button" class="btn btn-default" onclick="reportGet('reports/inventoryoverview.php', 10)">10</button>
+						<button type="button" class="btn btn-default" onclick="reportGet('reports/inventoryoverview.php', 12)">12</button>
+						<button type="button" class="btn btn-default" onclick="reportGet('reports/inventoryoverview.php', 13)">13</button>
+						<button type="button" class="btn btn-default" onclick="reportGet('reports/inventoryoverview.php', 15)">15</button>
+						<button type="button" class="btn btn-default" onclick="reportGet('reports/inventoryoverview.php', 16)">16</button>
+						<button type="button" class="btn btn-default" onclick="reportGet('reports/inventoryoverview.php', 17)">17</button>
 						<button type="button" class="btn btn-default" onclick="reportGet('reports/salesoverview.php')">All Trucks</button>
 					</div>
 					</div>

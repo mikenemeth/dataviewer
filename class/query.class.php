@@ -18,11 +18,14 @@ class Query {
 		return $this->db->resultset();
 	}
 	
-	public function get_inventory_qty_stock_order_minmax_by_store($store, $vendorArray) {
+	public function get_inventory_qty_stock_order_minmax_by_store($stores, $vendorArray) {
+		if(is_array($stores)) {
+			implode(",", $stores);
+		}
 		$this->db->query(
 			"SELECT vendors.code AS Vendor, SUM(inventory.instock) AS InStock, SUM(inventory.onorder) AS OnOrder, SUM(inventory.min) AS MinMax
 			FROM `inventory`, `vendors`, `items` 
-			WHERE inventory.storeID=" . $store . "  AND inventory.min>0
+			WHERE inventory.storeID=" . $stores . "  AND inventory.min>0
 			AND (items.vendorID=vendors.id AND items.id=inventory.itemID)
 			GROUP BY Vendor"
 		);
@@ -75,12 +78,16 @@ class Query {
 		return $this->db->single();
 	}
 	
-	public function get_sales_by_store_by_daterange($storeArray, $dateArray) {
+	public function get_sales_by_store_by_daterange($stores, $dateArray) {
+		if(is_array($stores)) {
+			implode(",", $stores);
+		}
+		
 		$this->db->query(
 			"SELECT IFNULL(storeID, 'Total') AS Store, SUM(retail) AS Retail, SUM(actual) AS Actual, SUM(Retail-Actual) AS Discount, (SELECT (SUM(retail)-SUM(actual))/SUM(retail)*100) As Percent 
 			FROM `sales` 
 			WHERE (invoiceDate>='" . $dateArray[0] . "' AND invoiceDate<='" . $dateArray[1] . "') 
-			AND storeID IN (" . implode(",", $storeArray) . ") 
+			AND storeID IN (" . $stores . ") 
 			GROUP BY storeID WITH ROLLUP"		
 		);
 		$this->db->execute();
