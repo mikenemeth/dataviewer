@@ -18,7 +18,7 @@
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Sales<span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
-				<li><a href="#" id="discountReport" value="Sales Overview" onclick="reportLoad('reports/sales.php')">Sales Summary</a></li>
+				<li><a href="#" id="discountReport" value="Sales Overview" onclick="reportLoad('reports/sales.php')">Sales by Store</a></li>
 				<li><a href="#" id="discountReport" value="Sales Overview" onclick="reportLoad('reports/discounts.php')">Sales Discounts</a></li>
               </ul>
             </li>
@@ -34,6 +34,13 @@
             </li>
 			
           </ul>
+		  <ul class="nav navbar-nav navbar-right warning">
+			<li>
+				<button type="button" class="btn navbar-btn btn-warning">
+					<a href="#" id="admin" value="Admin" onclick="reportLoad('admin/updater.php')">Admin</a>
+				</button>
+			</li>
+		  </ul>
         </div><!--/.nav-collapse -->
       </div>
     </nav>

@@ -6,43 +6,61 @@ require_once('../class/display.class.php');
 ?>
 
     <div class="page-header">
-        <h1>Sales Overview</h1>
+        <h1>Sales by Store</h1>
     </div>
 <div id="controls">	  
 	<div class="row">
-		<form role="form" action="" method="get">	
-			<div class="col-md-4">
-				<fieldset>
-					<div class="form-group">
-					<label for="dateRange">Select Date Range</label>
-					<div id="dateRange" class="btn-group" role="group">
-						<button type="button" class="btn btn-default" onclick="reportGet('reports/salesbystore.php', 1)">YTD</button>
-						<button type="button" class="btn btn-default" onclick="reportGet('reports/salesbystore.php', 1)">MTD</button>
-						<button type="button" class="btn btn-default" onclick="reportGet('reports/salesbystore.php', 1)">WTD</button>
-					</div>
-					</div>
-				</fieldset>
-				</div>
+		<form id="salesReportControl" role="form" action="" method="post">	
 
-			<div class="col-md-8">
+			<div class="col-md-3">
 				<fieldset>
 					<div class="form-group">
-					<label for="stores">Select Stores</label>
-					<div id="dateRange" class="btn-group" role="group">
-						<button type="button" class="btn btn-default" onclick="reportGet('reports/salesbystore.php', 1)">1</button>
-						<button type="button" class="btn btn-default" onclick="reportGet('reports/salesbystore.php', 3)">3</button>
-						<button type="button" class="btn btn-default" onclick="reportGet('reports/salesbystore.php', 6)">6</button>
-						<button type="button" class="btn btn-default" onclick="reportGet('reports/salesbystore.php', 10)">10</button>
-						<button type="button" class="btn btn-default" onclick="reportGet('reports/salesbystore.php', 12)">12</button>
-						<button type="button" class="btn btn-default" onclick="reportGet('reports/salesbystore.php', 13)">13</button>
-						<button type="button" class="btn btn-default" onclick="reportGet('reports/salesbystore.php', 15)">15</button>
-						<button type="button" class="btn btn-default" onclick="reportGet('reports/salesbystore.php', 16)">16</button>
-						<button type="button" class="btn btn-default" onclick="reportGet('reports/salesbystore.php', 17)">17</button>
+					<div id="storeSelect" class="input-group">
+						<select name="storeSelect" class="form-control" required>
+						  <option >Select Stores...</option>
+						  <option value="1">1</option>
+						  <option value="2">2</option>
+						  <option value="3">3</option>
+						  <option value="6">6</option>
+						  <option value="7">7</option>
+						  <option value="8">8</option>
+						  <option value="10">10</option>
+						  <option value="12">12</option>
+						  <option value="13">13</option>
+						  <option value="15">15</option> 
+						  <option value="16">16</option>
+						  <option value="17">17</option> 
+						</select>
 					</div>
 					</div>
 				</fieldset>
 				</div>
 				
+			<div class="col-md-3">
+				<fieldset>
+					<div class="form-group">
+						<div id="startDate" class="input-group">
+							<label class="sr-only" for="startdate">Start Date</label>
+							<div class="input-group-addon">Start Date</div>
+							<input type="date" name="startDate" class="form-control" id="startDate"  min="2008-01-01" placeholder="ex. 12/01/2014" required>
+						</div>
+					</div>
+				</fieldset>
+			</div>
+
+			<div class="col-md-3">
+				<fieldset>
+					<div class="form-group">
+						<div id="endDate" class="input-group">
+							<label class="sr-only" for="enddate">End Date</label>
+							<div class="input-group-addon">End Date</div>
+							<input type="date" name="endDate" class="form-control" id="startDate" max="<?php echo date("Y-m-d"); ?>"placeholder="ex. 12/07/2014" required>
+						</div>
+					</div>
+				</fieldset>
+			</div>				
+				
+			<button type="button" id="submit_btn" class="btn btn-primary" name="submit" value="submit" onclick="getSalesReport('reports/salesbystore.php')">Submit</button>
 		</form>
 	</div>
 </div>

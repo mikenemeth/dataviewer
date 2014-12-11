@@ -8,18 +8,10 @@ require_once('../class/query.class.php');
 $database = new Database();
 $query = new Query($database);
 
-$dates = array('14-09-01', '14-12-01');
+$store = $_REQUEST['storeSelect'];
 $vendors = array("'CHE'", "'KOI'", "'WKS'");
 ?>
 
-<?php
-if(isset($_GET['store'])) {
-	$store = $_GET['store'];
-}
-else {
-	echo "Failed.";
-}
-?>
 <div id="wrapper">
 
       <div class="page-header">

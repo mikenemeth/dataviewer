@@ -9,31 +9,37 @@ require_once('../class/display.class.php');
     </div>
 <div id="controls">	  
 	<div class="row">
-		<form role="form" action="" method="get">	
+		<form id="inventoryReportControl" role="form" action="" method="post">	
 
-			<div class="col-md-8">
+			<div class="col-md-3">
 				<fieldset>
 					<div class="form-group">
-					<label for="stores">Select Stores</label>
-					<div id="dateRange" class="btn-group" role="group">
-						<button type="button" class="btn btn-default" onclick="reportGet('reports/inventorybystore.php', 1)">1</button>
-						<button type="button" class="btn btn-default" onclick="reportGet('reports/inventorybystore.php', 3)">3</button>
-						<button type="button" class="btn btn-default" onclick="reportGet('reports/inventorybystore.php', 6)">6</button>
-						<button type="button" class="btn btn-default" onclick="reportGet('reports/inventorybystore.php', 10)">10</button>
-						<button type="button" class="btn btn-default" onclick="reportGet('reports/inventorybystore.php', 12)">12</button>
-						<button type="button" class="btn btn-default" onclick="reportGet('reports/inventorybystore.php', 13)">13</button>
-						<button type="button" class="btn btn-default" onclick="reportGet('reports/inventorybystore.php', 15)">15</button>
-						<button type="button" class="btn btn-default" onclick="reportGet('reports/inventorybystore.php', 16)">16</button>
-						<button type="button" class="btn btn-default" onclick="reportGet('reports/inventorybystore.php', 17)">17</button>
+					<div id="storeSelect" class="input-group">
+						<select name="storeSelect" class="form-control" required>
+						  <option >Select Stores...</option>
+						  <option value="1">1</option>
+						  <option value="2">2</option>
+						  <option value="3">3</option>
+						  <option value="6">6</option>
+						  <option value="7">7</option>
+						  <option value="8">8</option>
+						  <option value="10">10</option>
+						  <option value="12">12</option>
+						  <option value="13">13</option>
+						  <option value="15">15</option> 
+						  <option value="16">16</option>
+						  <option value="17">17</option> 
+						</select>
 					</div>
 					</div>
 				</fieldset>
-				</div>
+				</div>			
 				
+			<button type="button" id="submit_btn" class="btn btn-primary" name="submit" value="submit" onclick="getSalesReport('reports/inventorybystore.php')">Submit</button>
 		</form>
 	</div>
 </div>
 
 <div id="reportContainer">
-	<p>Default Content.</p>
+	<?php include('inventory-dashboard.php'); ?>
 </div>

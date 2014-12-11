@@ -36,7 +36,8 @@ define('INVENTORY_FILE', 'InventoryList.csv');
 // Sales Detail by Transaction File name
 define('SALES_FILE', 'sales.csv');
 
-$STORE_MAP = array(
+//Map store numbers to input directories
+$CFG_STORE_MAP = array(
 	'1' => STORE_1,
 	'2' => STORE_2,
 	'3' => STORE_3,
@@ -51,5 +52,8 @@ $STORE_MAP = array(
 	'17' => STORE_17
 );
 
-$ALL_TRUCKS = array(1,3,6,10,12,13,15,16,17);
+// Set stores groups
+$CFG_SOW_TRUCKS = array(1,3,6,10,12,13,15,16,17);
+$CFG_SOW_OTHER_STORES = array(2,7);
+$CFG_UES_STORES = array(8);
 ?>

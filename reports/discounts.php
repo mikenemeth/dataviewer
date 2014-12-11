@@ -12,7 +12,9 @@ $stores = array(1,3,6,10,12,13,15,16,17);
 $ues = array(2,7,8);
 $yearRange = array('14-01-01', '14-12-08');
 $monthRange = array('14-12-01', '14-12-08');
-$lastWeek = array('14-12-01', '14-12-08');
+$lastWeek = array(
+	date(), 
+	);
 
 function convertToMysqlDate($shortDate) {
 

@@ -13,14 +13,3 @@ $vendors = array("'CHE'", "'KOI'", "'WKS'");
 $trucks = array(1,2,3,7,6,10,12,13,15,16,17);
 $ues = array(8);
 ?>
-
-<?php
-if(isset($_GET['store'])) {
-	$store = $_GET['store'];
-}
-else {
-	echo "Failed.";
-}
-?>
-
-</div>
