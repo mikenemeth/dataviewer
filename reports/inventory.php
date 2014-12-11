@@ -3,8 +3,6 @@ require_once('../config/config.php');
 require_once('../class/database.class.php');
 require_once('../class/query.class.php');
 require_once('../class/display.class.php');
-
-$allTrucks = array(1,3,6,10,12,13,15,16,17);
 ?>
     <div class="page-header">
         <h1>Inventory by Store</h1>
@@ -27,7 +25,6 @@ $allTrucks = array(1,3,6,10,12,13,15,16,17);
 						<button type="button" class="btn btn-default" onclick="reportGet('reports/inventorybystore.php', 15)">15</button>
 						<button type="button" class="btn btn-default" onclick="reportGet('reports/inventorybystore.php', 16)">16</button>
 						<button type="button" class="btn btn-default" onclick="reportGet('reports/inventorybystore.php', 17)">17</button>
-						<button type="button" class="btn btn-default" onclick="reportGet('reports/inventorybystore.php'">All Trucks</button>
 					</div>
 					</div>
 				</fieldset>

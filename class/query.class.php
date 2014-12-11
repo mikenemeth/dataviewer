@@ -78,6 +78,15 @@ class Query {
 		return $this->db->single();
 	}
 	
+	public function get_single_store_sales_by_by_daterange() {
+		$this->db->query(
+			"SELECT MONTH(invoiceDate) AS Month, SUM(retail) AS Retail, SUM(actual) AS Actual, SUM(retail-actual) AS Discount, (SELECT (SUM(retail)-SUM(actual))/SUM(retail)*100) As Percent 
+			FROM `sales` 
+			WHERE YEAR(invoiceDate)=2014 AND storeID=1 
+			GROUP BY MONTH(invoiceDate)"
+		);
+	}
+	
 	public function get_sales_by_store_by_daterange($stores, $dateArray) {
 		if(is_array($stores)) {
 			$stores = implode(",", $stores);

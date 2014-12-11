@@ -50,4 +50,6 @@ $STORE_MAP = array(
 	'16' => STORE_16,
 	'17' => STORE_17
 );
+
+$ALL_TRUCKS = array(1,3,6,10,12,13,15,16,17);
 ?>
