@@ -29,7 +29,7 @@
                 <li><a href="#" id="inventoryReport" value="inventory.php" onclick="reportLoad('reports/inventory.php')">Inventory by Store</a></li>
                 <li><a href="#" id="printTopReport" value="Print Top Analysis" onclick="reportLoad('reports/printtops.php')">Print Top Analysis</a></li>
                 <li><a href="#" id="shoeReport" value="Shoe Analysis" onclick="reportLoad('reports/shoes.php')">Shoe Analysis</a></li>
-                <li><a href="#" id="shoeReport" value="Shoe Analysis" onclick="reportLoad('reports/shoes.php')">Vendor Inventory Analysis</a></li>
+                <li><a href="#" id="shoeReport" value="Vendor Analysis" onclick="reportLoad('reports/vendoranalysis.php')">Vendor Inventory Analysis</a></li>
               </ul>
             </li>
 			

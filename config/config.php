@@ -54,6 +54,6 @@ $CFG_STORE_MAP = array(
 
 // Set stores groups
 $CFG_SOW_TRUCKS = array(1,3,6,10,12,13,15,16,17);
-$CFG_SOW_OTHER_STORES = array(2,7);
+$CFG_SOW_WW = array(2,7);
 $CFG_UES_STORES = array(8);
 ?>

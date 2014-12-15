@@ -5,14 +5,16 @@ require_once('class/dataupload.class.php');
 require_once('class/query.class.php');
 require_once('class/display.class.php');
 
-//$inputFile = STORE_17 . INVENTORY_FILE;
-//$storeNumber = 17;
+$inputFile = STORE_17 . INVENTORY_FILE;
+$storeNumber = 17;
 
-//echo "Parsing input file: $inputFile";
-//$inputFile = 'data/sales/Sales Detail by Transaction 12-02-14 to 12-09-14.csv';
-//$upload = new DataUpload($inputFile);
-//$upload->readCSV();
+//$inputFile = 'data/sales/Sales Detail by Transaction 1-01-14 to 12-01-14.csv';
 
-//$upload->uploadInventoryData($storeNumber);
+echo "Parsing input file: $inputFile";
+
+$upload = new DataUpload($inputFile);
+$upload->readCSV();
+
+$upload->uploadInventoryData($storeNumber);
 
 ?>

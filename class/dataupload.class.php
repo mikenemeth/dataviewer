@@ -70,7 +70,7 @@ Convert short date to MySql date
 			$date = self::convertToMysqlDate($record{'Invoice Date'});
 					
 			$database->query(
-				"INSERT INTO sales (`storeID`, `companyID`, `customer`, `invoiceDate`, `invoiceNum`, `vendorID`, `itemID`, `soldQty`, `retail`, `actual`) 
+				"INSERT INTO sales (`storeID`, `companyID`, `customer`, `invoiceDate`, `invoiceNum`, `vendorID`, `itemID`, `soldQty`, `cost`, `retail`, `actual`) 
 				VALUES ( 
 				(SELECT id FROM store WHERE `id`=:store), 
 				(SELECT id FROM company WHERE `accountNum`=:company), 
@@ -80,6 +80,7 @@ Convert short date to MySql date
 				(SELECT id FROM vendors WHERE `code`=:vendor), 
 				(SELECT id FROM items WHERE `sku`=:sku), 
 				:soldqty, 
+				:cost, 
 				:retail, 
 				:actual)"
 			);
@@ -92,6 +93,7 @@ Convert short date to MySql date
 			$database->bind(':vendor', $record{'Vendor'});
 			$database->bind(':sku', trim(current(explode('(', $record{'Item'}))));
 			$database->bind(':soldqty', $record{'Sold Qty'});
+			$database->bind(':cost', $record{'Cost'});
 			$database->bind(':retail', $record{'Retail'});
 			$database->bind(':actual', $record{'Actual'});
 
@@ -252,16 +254,18 @@ Convert short date to MySql date
 			}
 			
 			$database->query(
-				"INSERT INTO items (`sku`, `description`, `size`, `color`, `vendorID`, `dept`, `code`) 
-				VALUES ( :sku, :description, :size, :color, (SELECT id FROM vendors WHERE `code`=:vendor), :dept, :code) 
+				"INSERT INTO items (`sku`, `style`, `description`, `size`, `color`, `colorDesc`, `vendorID`, `dept`, `code`) 
+				VALUES ( :sku, :style, :description, :size, :color, :colorDesc, (SELECT id FROM vendors WHERE `code`=:vendor), :dept, :code) 
 				ON DUPLICATE KEY 
-				UPDATE `sku`=:sku, `description`=:description, `size`=:size, `color`=:color, `vendorID`=(SELECT id FROM vendors WHERE `code`=:vendor), `dept`=:dept, `code`=:code"
+				UPDATE `sku`=:sku, `style`=:style, `description`=:description, `size`=:size, `color`=:color, `colorDesc`=:colorDesc, `vendorID`=(SELECT id FROM vendors WHERE `code`=:vendor), `dept`=:dept, `code`=:code"
 			);
 					
 			$database->bind(':sku', $sku );
+			$database->bind(':style', $record{'Style/Product'});
 			$database->bind(':description', $record{'Description'});
 			$database->bind(':size', $record{'Size'});
 			$database->bind(':color', $record{'Color'});
+			$database->bind(':colorDesc', $record{'Color Description'});
 			$database->bind(':vendor', $record{'Vendor'});
 			$database->bind(':dept', $record{'Depart'});
 			$database->bind(':code', $record{'Code'});
@@ -299,20 +303,5 @@ Convert short date to MySql date
 	}
 
 }
-
-/*
-
-INSERT INTO sales (storeID, companyID, shipToId, invoiceDate, vendorID, itemID, soldQty, retail, actual) VALUES (
-    	(SELECT id FROM store WHERE `id`=1),
-    	(SELECT id FROM company WHERE `name`=$company),
-    	(SELECT id FROM customer WHERE `name`=$customer),
-    	$date,
-    	(SELECT id FROM vendors WHERE `code`='$record{'Vendor'}'),
-    	'29',
-    	'1',
-    	'12.99',
-    	'11.72'
-    );
-*/
 
 ?>
