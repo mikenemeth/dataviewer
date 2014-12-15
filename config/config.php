@@ -34,7 +34,7 @@ define('STORE_17', 'data/store 17/');
 define('INVENTORY_FILE', 'InventoryList.csv');
 
 // Sales Detail by Transaction File name
-define('SALES_FILE', 'sales.csv');
+define('SALES_FILE', 'sales/sales.csv');
 
 //Map store numbers to input directories
 $CFG_STORE_MAP = array(

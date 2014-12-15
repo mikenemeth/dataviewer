@@ -260,7 +260,7 @@ Convert short date to MySql date
 				UPDATE `sku`=:sku, `style`=:style, `description`=:description, `size`=:size, `color`=:color, `colorDesc`=:colorDesc, `vendorID`=(SELECT id FROM vendors WHERE `code`=:vendor), `dept`=:dept, `code`=:code"
 			);
 					
-			$database->bind(':sku', $sku );
+			$database->bind(':sku', $sku);
 			$database->bind(':style', $record{'Style/Product'});
 			$database->bind(':description', $record{'Description'});
 			$database->bind(':size', $record{'Size'});
@@ -275,13 +275,15 @@ Convert short date to MySql date
 				echo "<br/ > Last row ID: " . $database->lastInsertId();
 			}
 		}
-	}
-
+	}	
 	
-	public function testUpload() {
-
+	// Empty inventory table can become very large over time
+	private function emptyInventoryTable() {
+		$database = new Database();
+		$database->query('TRUNCATE `inventory`');
+		$database->execute();
+		echo '<br /><p>Inventory table data cleared.</p>';
 	}
-	
 	
 	public function uploadSalesData() {
 	
@@ -296,10 +298,6 @@ Convert short date to MySql date
 		$this->addVendors();
 		$this->addItemsInventory();
 		$this->addInventory($storeNumber);
-	}
-	
-	private function setUploadType() {
-		
 	}
 
 }
