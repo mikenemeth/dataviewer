@@ -278,7 +278,7 @@ Convert short date to MySql date
 	}	
 	
 	// Empty inventory table can become very large over time
-	private function emptyInventoryTable() {
+	public function emptyInventoryTable() {
 		$database = new Database();
 		$database->query('TRUNCATE `inventory`');
 		$database->execute();

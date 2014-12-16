@@ -16,11 +16,14 @@ require_once('class/query.class.php');
 
 
 function updateInventory() {
-
-	$upload->emptyInventoryTable(); //clear Inventory table before upload
-
+	
+	global $CFG_STORE_MAP;
+	
+	DataUpload::emptyInventoryTable(); //clear Inventory table before upload
+	
 	foreach($CFG_STORE_MAP as $storeNumber=>$directory) {
-		$inputFile = $storeNumber[$directory] . INVENTORY_FILE;
+		$inputFile = $directory . INVENTORY_FILE;
+		echo "Reading store $storeNumber input file: $inputFile";
 
 		$upload = new DataUpload($inputFile);
 		$upload->readCSV();
@@ -40,5 +43,6 @@ function updateSales() {
 // Run script
 //updateSales();
 updateInventory();
+
 
 ?>
