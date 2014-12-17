@@ -34,14 +34,15 @@ function updateInventory() {
 
 function updateSales() {
 	
-	$upload = new DataUpload(SALES_FILE);
+	$inputFile = SALES_FILE;
+	$upload = new DataUpload($inputFile);
 	echo "Parsing sales input file...";
 	$upload->readCSV();
 	$upload->uploadSalesData();
 }
 
 // Run script
-//updateSales();
+updateSales();
 updateInventory();
 
 
