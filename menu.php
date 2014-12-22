@@ -20,6 +20,8 @@
               <ul class="dropdown-menu" role="menu">
 				<li><a href="#" id="discountReport" value="Sales Overview" onclick="reportLoad('reports/sales.php')">Sales by Store</a></li>
 				<li><a href="#" id="discountReport" value="Sales Overview" onclick="reportLoad('reports/discounts.php')">Sales Discounts</a></li>
+				<li><a href="#" id="discountReport" value="Sales Overview" onclick="reportLoad('reports/salesdatabystore-control.php')">Sales Data by Store</a></li>
+				<li><a href="#" id="discountReport" value="Sales Overview" onclick="reportLoad('reports/salesbyfacility-control.php')">Sales by Facility</a></li>
               </ul>
             </li>
 			
@@ -30,6 +32,13 @@
                 <li><a href="#" id="printTopReport" value="Print Top Analysis" onclick="reportLoad('reports/printtops.php')">Print Top Analysis</a></li>
                 <li><a href="#" id="shoeReport" value="Shoe Analysis" onclick="reportLoad('reports/shoes.php')">Shoe Analysis</a></li>
                 <li><a href="#" id="shoeReport" value="Vendor Analysis" onclick="reportLoad('reports/vendoranalysis.php')">Vendor Inventory Analysis</a></li>
+              </ul>
+            </li>
+			
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Customers<span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="#" id="customerVendorBehavior" value="inventory.php" onclick="reportLoad('reports/customerbuyingbyvendor-control.php')">Purchases by Vendor</a></li>
               </ul>
             </li>
 			

@@ -65,7 +65,15 @@ class Query {
 		);
 		$this->db->execute();
 		return $this->db->resultset();
-	}	
+	}
+	
+	public function get_year_list() {
+		$this->db->query(
+			"SELECT YEAR(invoiceDate) FROM `sales` GROUP BY YEAR(invoiceDate)"
+		);
+		$this->db->execute();
+		return $this->db->resultSet();
+	}
 	
 	public function get_total_sales_single_year($year, $storeArray) {
 		$this->db->query(
@@ -134,5 +142,75 @@ class Query {
 		return $this->db->resultSet();
 	}
 	
+	public function get_shoe_inventory_by_size($dept) {
+		$this->db->query(
+			"SELECT inventory.storeID AS Store,
+				SUM(IF(items.size='6',1,0)) AS '6',
+				SUM(IF(items.size='6.5',1,0)) AS '6.5',
+				SUM(IF(items.size='7',1,0)) AS '7',
+				SUM(IF(items.size='7.5',1,0)) AS '7.5',
+				SUM(IF(items.size='8',1,0)) AS '8',
+				SUM(IF(items.size='8.5',1,0)) AS '8.5',
+				SUM(IF(items.size='9',1,0)) AS '9',
+				SUM(IF(items.size='9.5',1,0)) AS '9.5',
+				SUM(IF(items.size='10',1,0)) AS '10',
+				SUM(IF(items.size='10.5',1,0)) AS '10.5',
+				SUM(IF(items.size='11',1,0)) AS '11',
+				SUM(IF(items.size='11.5',1,0)) AS '11.5',
+				SUM(IF(items.size='12',1,0)) AS '12',
+				SUM(IF(items.size='13',1,0)) AS '13'
+				FROM `inventory`
+				INNER JOIN `items` ON inventory.itemID=items.id
+				WHERE inventory.instock>0 AND items.dept='" . $dept . "' AND inventory.storeID IN (1,3,6,10,12,13,15,16,17)
+				GROUP BY inventory.storeID"
+		);
+		$this->db->execute();
+		return $this->db->resultSet();
+	}
+	
+	public function get_store_sales_data_by_year($store, $year) {
+		$this->db->query(
+			"SELECT WEEK(sales.invoiceDate) 'Week', 
+			SUM(sales.retail) 'Retail', 
+			SUM(sales.actual) 'Actual', 
+			SUM(Retail-Actual) 'Discount', 
+			(SELECT (SUM(sales.retail)-SUM(sales.actual))/SUM(sales.retail)*100) 'Percent', 
+			SUM(sales.soldQty) 'Pcs Sold', 
+			COUNT(DISTINCT sales.invoiceNum) 'Invoices', 
+			COUNT(DISTINCT sales.customer) 'Customers' 
+			FROM `sales` 
+			WHERE YEAR(sales.invoiceDate)=" . $year . " AND sales.storeID=" . $store . " GROUP BY WEEK(sales.invoiceDate)"
+		);
+		$this->db->execute();
+		$result = $this->db->resultSet();
+		
+		foreach($result as $field=>$value) {
+			$result[$field]['Retail'] = '$' . number_format($value['Retail'],2);
+			$result[$field]['Actual'] = '$' . number_format($value['Actual'],2);
+			$result[$field]['Discount'] = '$' . number_format($value['Discount'],2);
+			$result[$field]['Percent'] = number_format($value['Percent'],2) . '%';
+		}
+		return $result;
+	}
+	
+	public function get_sales_by_facility($facility) {
+		$this->db->query(
+			"SELECT sales.invoiceDate 'Date', SUM(retail) AS Retail, SUM(actual) AS Actual, SUM(retail-actual) AS Discount, (SELECT (SUM(retail)-SUM(actual))/SUM(retail)*100) As Percent, COUNT(DISTINCT sales.invoiceNum) 'Invoices' 
+			FROM `sales` 
+			JOIN `company` ON sales.companyID=company.id 
+			WHERE company.accountNum='" . $facility . "' AND sales.actual>0 
+			GROUP BY sales.invoiceDate 
+			ORDER BY sales.invoiceDate ASC"
+		);
+		$this->db->execute();
+		$result = $this->db->resultSet();
+		foreach($result as $field=>$value) {
+			$result[$field]['Retail'] = '$' . number_format($value['Retail'],2);
+			$result[$field]['Actual'] = '$' . number_format($value['Actual'],2);
+			$result[$field]['Discount'] = '$' . number_format($value['Discount'],2);
+			$result[$field]['Percent'] = number_format($value['Percent'],2) . '%';
+		}
+		return $result;
+	}
 }
 ?>

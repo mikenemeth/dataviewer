@@ -8,21 +8,21 @@ require_once('../class/query.class.php');
 $database = new Database();
 $query = new Query($database);
 
-$codes = array('PRINT', 'CLEAR', 'CLOSE');
+$depts = array('FOOTW');
 ?>
 
 <div id="wrapper">
 
       <div class="page-header">
-        <h2>Print Top Inventory Analysis <small><?php echo "Report generated " . date("m/d/Y"); ?></small></h2>
+        <h2>Shoe Inventory Analysis <small><?php echo "Report generated " . date("m/d/Y"); ?></small></h2>
       </div>
 
 		<?php
-		foreach($codes as $code) {
-		$headings = array('Store', 'XS', 'S', 'M', 'L', 'XL', '2XL', '3XL', '4XL', '5XL');
-			echo '<div class="row"><h3>Print Tops marked ' . $code . '</h3>';
+		foreach($depts as $dept) {
+		$headings = array('Store', '6', '6.5', '7', '7.5', '8', '8.5', '9', '9.5', '10','10.5', '11', '11.5', '12', '13');
+			echo '<div class="row"><h3>Shoes marked ' . $dept . '</h3>';
 			echo '<div class="col-sm-12">';
-				$rows = $query->get_print_top_inventory_by_size($code);
+				$rows = $query->get_shoe_inventory_by_size($dept);
 				Display::displayTable($headings, $rows);
 			echo "</div>";
 			echo "</div>";
