@@ -5,7 +5,7 @@ require_once('../class/dataupload.class.php');
 require_once('../class/display.class.php');
 require_once('../class/query.class.php');
 
-$store = $_REQUEST['storeSelect'];
+$store = array(1,2,3,6,7,8,10,12,13,15,16,17);
 $startDate = $_REQUEST['startDate'];
 $endDate = $_REQUEST['endDate'];
 
@@ -44,7 +44,7 @@ function convertHtmlDateToMysqlDate($htmlDate) {
 <div id="wrapper">
 
       <div class="page-header">
-        <h3><?php echo "Store " . $store  . " Sales: " . convertHtmlDateToShortDate($startDate) . " - " . convertHtmlDateToShortDate($endDate); ?></h3>
+        <h3><?php echo "Sales by Store: " . convertHtmlDateToShortDate($startDate) . " - " . convertHtmlDateToShortDate($endDate); ?></h3>
       </div>
       <div class="row">
         <div class="col-md-12">

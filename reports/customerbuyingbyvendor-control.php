@@ -45,13 +45,13 @@ require_once('../class/display.class.php');
 						<div id="endDate" class="input-group">
 							<label class="sr-only" for="enddate">End Date</label>
 							<div class="input-group-addon">End Date</div>
-							<input type="date" name="endDate" class="form-control" id="startDate" max="<?php echo date("Y-m-d"); ?>"placeholder="ex. 12/07/2014" required>
+							<input type="date" name="endDate" class="form-control" id="startDate" max="<?php echo date("Y-m-d", time()-60*60*24); ?>"placeholder="ex. 12/07/2014" required>
 						</div>
 					</div>
 				</fieldset>
 			</div>				
 				
-			<button type="button" id="submit_btn" class="btn btn-primary" name="submit" value="submit" onclick="getSalesReport('reports/salesbystore.php')">Submit</button>
+			<button type="button" id="submit_btn" class="btn btn-primary" name="submit" value="submit" onclick="getSalesReport('reports/customerbuyingbyvendor.php')">Submit</button>
 		</form>
 	</div>
 </div>

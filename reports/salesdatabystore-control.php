@@ -6,7 +6,7 @@ require_once('../class/display.class.php');
 ?>
 
     <div class="page-header">
-        <h1>Sales by Store</h1>
+        <h1>Sales by Week</h1>
     </div>
 <div id="controls">	  
 	<div class="row">

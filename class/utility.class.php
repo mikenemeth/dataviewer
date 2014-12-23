@@ -52,6 +52,19 @@ class Utility {
 		$shortDate = date_format($dateTemp, 'm/d/Y');	
 		return $shortDate;
 	}
-}
+	
+	public static function convertHtmlDateToShortDate($htmlDate) {
 
+		$dateTemp = date_create_from_format('Y-m-d', $htmlDate);
+		$shortDate = date_format($dateTemp, 'm/d/Y');	
+		return $shortDate;
+	}
+
+	public static function convertHtmlDateToMysqlDate($htmlDate) {
+
+		$dateTemp = date_create_from_format('Y-m-d', $htmlDate);
+		$mysqlDate = date_format($dateTemp, 'y-m-d');	
+		return $mysqlDate;
+	}
+}
 ?>

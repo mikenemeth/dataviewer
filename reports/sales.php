@@ -6,35 +6,11 @@ require_once('../class/display.class.php');
 ?>
 
     <div class="page-header">
-        <h1>Sales by Store</h1>
+        <h1>All Sales by Store</h1>
     </div>
 <div id="controls">	  
 	<div class="row">
 		<form id="salesReportControl" role="form" action="" method="post">	
-
-			<div class="col-md-3">
-				<fieldset>
-					<div class="form-group">
-					<div id="storeSelect" class="input-group">
-						<select name="storeSelect" class="form-control" required>
-						  <option >Select Stores...</option>
-						  <option value="1">1</option>
-						  <option value="2">2</option>
-						  <option value="3">3</option>
-						  <option value="6">6</option>
-						  <option value="7">7</option>
-						  <option value="8">8</option>
-						  <option value="10">10</option>
-						  <option value="12">12</option>
-						  <option value="13">13</option>
-						  <option value="15">15</option> 
-						  <option value="16">16</option>
-						  <option value="17">17</option> 
-						</select>
-					</div>
-					</div>
-				</fieldset>
-				</div>
 				
 			<div class="col-md-3">
 				<fieldset>

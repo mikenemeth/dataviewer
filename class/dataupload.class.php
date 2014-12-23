@@ -31,8 +31,8 @@ Read CSVs
 				}
 			}
 			fclose($handle);
+			echo "<p>CSV read into memory...</p>";
 		}
-		echo "<p>CSV read into memory...</p>";
 	}
 
 /***********************************************
@@ -100,7 +100,7 @@ Convert short date to MySql date
 
 			$database->execute();
 			if($database->lastInsertId()) {
-				echo "<br/ > Last row ID: " . $database->lastInsertId();
+				echo "<br/ > Last sales table row ID: " . $database->lastInsertId();
 			}
 		}
 		echo "<p>All sales data added.</p>";
@@ -162,7 +162,7 @@ Convert short date to MySql date
 
 			$database->execute();
 			if($database->lastInsertId()) {
-				echo "<br/ > Row " . $database->lastInsertId() . " inserted.";
+				echo "<br/ > Company row " . $database->lastInsertId() . " inserted.";
 			}
 		}
 	}
@@ -186,7 +186,7 @@ Convert short date to MySql date
 
 			$database->execute();
 			if($database->lastInsertId()) {
-				echo "<br/ > Row " . $database->lastInsertId() . " inserted.";
+				echo "<br/ > Customer row " . $database->lastInsertId() . " inserted.";
 			}
 		}
 	}
@@ -207,7 +207,7 @@ Convert short date to MySql date
 
 			$database->execute();
 			if($database->lastInsertId()) {
-				echo "<br/ > Last row ID: " . $database->lastInsertId();
+				echo "<br/ > Last vendor row ID: " . $database->lastInsertId();
 			}
 		}
 	}
@@ -234,7 +234,7 @@ Convert short date to MySql date
 
 			$database->execute();
 			if($database->lastInsertId()) {
-				echo "<br/ > Last row ID: " . $database->lastInsertId();
+				echo "<br/ > Last item row ID: " . $database->lastInsertId();
 			}
 		}
 	}
@@ -272,7 +272,7 @@ Convert short date to MySql date
 
 			$database->execute();
 			if($database->lastInsertId()) {
-				echo "<br/ > Last row ID: " . $database->lastInsertId();
+				echo "<br/ > Last item row ID: " . $database->lastInsertId();
 			}
 		}
 	}	

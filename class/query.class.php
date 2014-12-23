@@ -146,17 +146,17 @@ class Query {
 		$this->db->query(
 			"SELECT inventory.storeID AS Store,
 				SUM(IF(items.size='6',1,0)) AS '6',
-				SUM(IF(items.size='6.5',1,0)) AS '6.5',
+				SUM(IF(items.size='6H',1,0)) AS '6.5',
 				SUM(IF(items.size='7',1,0)) AS '7',
-				SUM(IF(items.size='7.5',1,0)) AS '7.5',
+				SUM(IF(items.size='7H',1,0)) AS '7.5',
 				SUM(IF(items.size='8',1,0)) AS '8',
-				SUM(IF(items.size='8.5',1,0)) AS '8.5',
+				SUM(IF(items.size='8H',1,0)) AS '8.5',
 				SUM(IF(items.size='9',1,0)) AS '9',
-				SUM(IF(items.size='9.5',1,0)) AS '9.5',
+				SUM(IF(items.size='9H',1,0)) AS '9.5',
 				SUM(IF(items.size='10',1,0)) AS '10',
-				SUM(IF(items.size='10.5',1,0)) AS '10.5',
+				SUM(IF(items.size='10H',1,0)) AS '10.5',
 				SUM(IF(items.size='11',1,0)) AS '11',
-				SUM(IF(items.size='11.5',1,0)) AS '11.5',
+				SUM(IF(items.size='11H',1,0)) AS '11.5',
 				SUM(IF(items.size='12',1,0)) AS '12',
 				SUM(IF(items.size='13',1,0)) AS '13'
 				FROM `inventory`
@@ -211,6 +211,19 @@ class Query {
 			$result[$field]['Percent'] = number_format($value['Percent'],2) . '%';
 		}
 		return $result;
+	}
+	
+	public function get_customer_brand_purchases($vendor) {
+		$this->db->query(
+			"SELECT SUM(sales.soldQty) 'Qty Purchased', sales.customer 'Customer' 
+			FROM `sales` INNER JOIN `vendors` ON sales.vendorID=vendors.id 
+			WHERE vendors.code='" . $vendor . "' AND (sales.invoiceDate>='14-10-01' AND sales.invoiceDate<='14-11-18') AND sales.storeID IN (1,3,6,10,12,13,15,16,17) AND (sales.soldQty>0 AND sales.soldQty<11) 
+			GROUP BY sales.customer ORDER BY `Qty Purchased` ASC"
+		);
+		$this->db->execute();
+		$result = $this->db->resultSet();
+		
+		var_dump($result);
 	}
 }
 ?>

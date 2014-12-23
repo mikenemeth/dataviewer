@@ -11,9 +11,9 @@ $query = new Query($database);
 $year = 2014;
 $stores = array(1,3,6,10,12,13,15,16,17);
 $ues = array(2,7,8);
-$yearRange = array('14-01-01', '14-12-07');
-$monthRange = array('14-12-01', '14-12-07');
-$lastWeek = array('14-12-01', '14-12-07');
+$yearRange = array('14-01-01', '14-12-20');
+$monthRange = array('14-12-01', '14-12-20');
+$lastWeek = array('14-12-14', '14-12-20');
 
 ?>
 <div id="wrapper">
@@ -24,7 +24,7 @@ $lastWeek = array('14-12-01', '14-12-07');
 	  
 
       <div class="page-header">
-        <h3>Truck Sales YTD <?php echo Utility::convertFromMysqlDate($yearRange[0]) . " - " . Utility::convertFromMysqlDate($yearRange[1]); ?></h3>
+        <h3>Truck Sales YTD <?php echo Utility::convertMysqlDateToShortDate($yearRange[0]) . " - " . Utility::convertMysqlDateToShortDate($yearRange[1]); ?></h3>
       </div>
       <div class="row">
         <div class="col-md-12">
@@ -37,7 +37,7 @@ $lastWeek = array('14-12-01', '14-12-07');
       </div>
 	  
       <div class="page-header">
-        <h3>Truck Sales MTD <?php echo convertFromMysqlDate($monthRange[0]) . " - " . Utility::convertFromMysqlDate($monthRange[1]); ?></h3>
+        <h3>Truck Sales MTD <?php echo Utility::convertMysqlDateToShortDate($monthRange[0]) . " - " . Utility::convertMysqlDateToShortDate($monthRange[1]); ?></h3>
       </div>
       <div class="row">
         <div class="col-md-12">
@@ -50,7 +50,7 @@ $lastWeek = array('14-12-01', '14-12-07');
       </div>
 	  
       <div class="page-header">
-        <h3>Truck Sales Last Week <?php echo Utility::convertFromMysqlDate($lastWeek[0]) . " - " . Utility::convertFromMysqlDate($lastWeek[1]); ?></h3>
+        <h3>Truck Sales Last Week <?php echo Utility::convertMysqlDateToShortDate($lastWeek[0]) . " - " . Utility::convertMysqlDateToShortDate($lastWeek[1]); ?></h3>
       </div>
       <div class="row">
         <div class="col-md-12">
