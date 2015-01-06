@@ -23,7 +23,7 @@ class Query {
 			$stores = implode(",", $stores);
 		}
 		$this->db->query(
-			"SELECT vendors.code AS Vendor, SUM(inventory.instock) AS InStock, SUM(inventory.onorder) AS OnOrder, SUM(inventory.min) AS MinMax
+			"SELECT vendors.code AS Vendor, SUM(inventory.instock) AS InStock, SUM(inventory.onorder) AS OnOrder, SUM(inventory.min) AS MinMax, (SUM(inventory.onorder) + SUM(inventory.instock))-SUM(inventory.min) 'MinMax +/-'
 			FROM `inventory`, `vendors`, `items` 
 			WHERE inventory.storeID=" . $stores . "  AND inventory.min>0
 			AND (items.vendorID=vendors.id AND items.id=inventory.itemID)
@@ -63,6 +63,13 @@ class Query {
 		$this->db->query(
 			"SELECT id FROM `store`;"
 		);
+		$this->db->execute();
+		return $this->db->resultset();
+	}
+	
+	// Saved for later date
+	public function get_facility_list() {
+		$this->db->query();
 		$this->db->execute();
 		return $this->db->resultset();
 	}

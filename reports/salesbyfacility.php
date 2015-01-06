@@ -20,7 +20,7 @@ $query = new Query($database);
       <div class="row">
         <div class="col-md-12">
 			<?php
-				$headings = array('Date', 'Retail', 'Actual', 'Discount', 'Percentage', 'Items Sold', 'Invoices');
+				$headings = array('Date', 'Retail', 'Actual', 'Discount', 'Percentage', 'Invoices');
 				$rows = $query->get_sales_by_facility($facility);
 				Display::displayTable($headings, $rows);
 			?>

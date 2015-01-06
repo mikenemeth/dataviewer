@@ -19,7 +19,7 @@ $vendors = array("'CHE'", "'KOI'", "'WKS'");
       </div>
 
 		<?php
-		$headings = array('Vendor', 'In Stock', 'On Order', 'Min/Max');
+		$headings = array('Vendor', 'In Stock', 'On Order', 'Min/Max', 'Min/Max +/-');
 			echo '<div class="row"><h3>Store ' . $store .  '</h3>';
 			echo '<div class="col-sm-6">';
 				$rows = $query->get_inventory_qty_stock_order_minmax_by_store($store, $vendors);
