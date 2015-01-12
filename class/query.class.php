@@ -131,18 +131,18 @@ class Query {
 	public function get_print_top_inventory_by_size($code) {
 		$this->db->query(
 			"SELECT inventory.storeID AS Store, 
-			SUM(IF(items.size='XS',1,0)) AS 'XS', 
-			SUM(IF(items.size='S',1,0)) AS 'S', 
-			SUM(IF(items.size='M',1,0)) AS 'M', 
-			SUM(IF(items.size='L',1,0)) AS 'L', 
-			SUM(IF(items.size='XL',1,0)) AS 'XL', 
-			SUM(IF(items.size='2XL',1,0)) AS '2XL', 
-			SUM(IF(items.size='3XL',1,0)) AS '3XL', 
-			SUM(IF(items.size='4XL',1,0)) AS '4XL', 
-			SUM(IF(items.size='5XL',1,0)) AS '5XL' 
+			SUM(IF(items.size='XS',inventory.instock,0)) AS 'XS', 
+			SUM(IF(items.size='S',inventory.instock,0)) AS 'S', 
+			SUM(IF(items.size='M',inventory.instock,0)) AS 'M', 
+			SUM(IF(items.size='L',inventory.instock,0)) AS 'L', 
+			SUM(IF(items.size='XL',inventory.instock,0)) AS 'XL', 
+			SUM(IF(items.size='2XL',inventory.instock,0)) AS '2XL', 
+			SUM(IF(items.size='3XL',inventory.instock,0)) AS '3XL', 
+			SUM(IF(items.size='4XL',inventory.instock,0)) AS '4XL', 
+			SUM(IF(items.size='5XL',inventory.instock,0)) AS '5XL' 
 			FROM `inventory` 
 			INNER JOIN `items` ON inventory.itemID=items.id 
-			WHERE inventory.instock>0 AND items.code='" . $code . "' AND inventory.storeID IN (1,3,6,10,12,13,15,16,17) 
+			WHERE inventory.instock>0 AND items.dept='PRINT' AND items.code='" . $code . "' AND inventory.storeID IN (1,2,3,6,8,10,12,13,15,16,17) 
 			GROUP BY inventory.storeID"
 		);
 		$this->db->execute();
@@ -152,23 +152,23 @@ class Query {
 	public function get_shoe_inventory_by_size($dept) {
 		$this->db->query(
 			"SELECT inventory.storeID AS Store,
-				SUM(IF(items.size='6',1,0)) AS '6',
-				SUM(IF(items.size='6H',1,0)) AS '6.5',
-				SUM(IF(items.size='7',1,0)) AS '7',
-				SUM(IF(items.size='7H',1,0)) AS '7.5',
-				SUM(IF(items.size='8',1,0)) AS '8',
-				SUM(IF(items.size='8H',1,0)) AS '8.5',
-				SUM(IF(items.size='9',1,0)) AS '9',
-				SUM(IF(items.size='9H',1,0)) AS '9.5',
-				SUM(IF(items.size='10',1,0)) AS '10',
-				SUM(IF(items.size='10H',1,0)) AS '10.5',
-				SUM(IF(items.size='11',1,0)) AS '11',
-				SUM(IF(items.size='11H',1,0)) AS '11.5',
-				SUM(IF(items.size='12',1,0)) AS '12',
-				SUM(IF(items.size='13',1,0)) AS '13'
+				SUM(IF(items.size='6',inventory.instock,0)) AS '6',
+				SUM(IF(items.size='6H',inventory.instock,0)) AS '6.5',
+				SUM(IF(items.size='7',inventory.instock,0)) AS '7',
+				SUM(IF(items.size='7H',inventory.instock,0)) AS '7.5',
+				SUM(IF(items.size='8',inventory.instock,0)) AS '8',
+				SUM(IF(items.size='8H',inventory.instock,0)) AS '8.5',
+				SUM(IF(items.size='9',inventory.instock,0)) AS '9',
+				SUM(IF(items.size='9H',inventory.instock,0)) AS '9.5',
+				SUM(IF(items.size='10',inventory.instock,0)) AS '10',
+				SUM(IF(items.size='10H',inventory.instock,0)) AS '10.5',
+				SUM(IF(items.size='11' OR items.size='11.00',inventory.instock,0)) AS '11',
+				SUM(IF(items.size='11H',inventory.instock,0)) AS '11.5',
+				SUM(IF(items.size='12',inventory.instock,0)) AS '12',
+				SUM(IF(items.size='13',inventory.instock,0)) AS '13'
 				FROM `inventory`
 				INNER JOIN `items` ON inventory.itemID=items.id
-				WHERE inventory.instock>0 AND items.dept='" . $dept . "' AND inventory.storeID IN (1,3,6,10,12,13,15,16,17)
+				WHERE inventory.instock>0 AND items.dept='" . $dept . "' AND inventory.storeID IN (1,2,3,6,8,10,12,13,15,16,17)
 				GROUP BY inventory.storeID"
 		);
 		$this->db->execute();
