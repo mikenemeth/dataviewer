@@ -21,7 +21,7 @@ $query = new Query($database);
       <div class="row">
         <div class="col-md-12">
 			<?php
-				$headings = array('Week', 'Retail', 'Actual', 'Discount', 'Percentage', 'Items Sold', 'Invoices', 'Customers');
+				$headings = array('Week Ending', 'Retail', 'Actual', 'Discount', 'Percentage', 'Items Sold', 'Invoices', 'Customers');
 				$rows = $query->get_store_sales_data_by_year($store, $year);
 				Display::displayTable($headings, $rows);
 			?>

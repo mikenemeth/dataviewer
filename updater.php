@@ -29,6 +29,8 @@ function updateInventory() {
 		$upload->readCSV();
 		echo "Parsing inventory input file: $inputFile";
 		$upload->uploadInventoryData($storeNumber);
+		
+		$upload->set_inv_upload_time($storeNumber);
 	}
 }
 
@@ -42,7 +44,7 @@ function updateSales() {
 }
 
 // Run script
-updateSales();
+//updateSales();
 updateInventory();
 
 

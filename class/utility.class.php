@@ -53,6 +53,13 @@ class Utility {
 		return $shortDate;
 	}
 	
+	public static function convertMysqlDateToHtmlDate($mysqlDate) {
+
+		$dateTemp = date_create_from_format('y-m-d', $mysqlDate);
+		$htmlDate = date_format($dateTemp, 'Y-m-d');	
+		return $htmlDate;
+	}
+	
 	public static function convertHtmlDateToShortDate($htmlDate) {
 
 		$dateTemp = date_create_from_format('Y-m-d', $htmlDate);

@@ -11,9 +11,9 @@ $query = new Query($database);
 $year = 2014;
 $stores = array(1,3,6,10,12,13,15,16,17);
 $ues = array(2,7,8);
-$yearRange = array('14-01-01', '14-12-20');
-$monthRange = array('14-12-01', '14-12-20');
-$lastWeek = array('14-12-14', '14-12-20');
+$yearRange = array('15-01-01', '15-01-09');
+$monthRange = array('15-01-01', '15-01-09');
+$lastWeek = array('15-01-04', '15-01-10');
 
 ?>
 <div id="wrapper">

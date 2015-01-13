@@ -28,6 +28,7 @@
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Inventory<span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
+				<li><a href="#" id="inventoryAnalysis" value="inventory_report.php" onclick="reportLoad('reports/inventory_report.php')">Truck Inventory Analysis</a></li>
                 <li><a href="#" id="inventoryReport" value="inventory.php" onclick="reportLoad('reports/inventory.php')">Inventory by Store</a></li>
                 <li><a href="#" id="printTopReport" value="Print Top Analysis" onclick="reportLoad('reports/printtops.php')">Print Top Analysis</a></li>
                 <li><a href="#" id="shoeReport" value="Shoe Analysis" onclick="reportLoad('reports/shoes.php')">Shoe Analysis</a></li>

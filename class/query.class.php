@@ -32,6 +32,24 @@ class Query {
 		$this->db->execute();
 		return $this->db->resultset();
 	}
+	
+	public function get_inventory($stores, $vendorArray) {
+		if(is_array($stores)) {
+			$stores = implode(",", $stores);
+		}
+		if(is_array($vendorArray)) {
+			$vendorArray = implode(",", $vendorArray);
+		}
+		$this->db->query(
+			"SELECT vendors.code AS Vendor, SUM(inventory.instock) AS InStock, SUM(inventory.onorder) AS OnOrder, SUM(inventory.min) AS MinMax, (SUM(inventory.onorder) + SUM(inventory.instock))-SUM(inventory.min) 'MinMax +/-'
+			FROM `inventory`, `vendors`, `items` 
+			WHERE inventory.storeID=(" . $stores . ")  AND vendors.code IN (" . $vendorArray . ") AND inventory.min>0 
+			AND (items.vendorID=vendors.id AND items.id=inventory.itemID) 
+			GROUP BY Vendor"
+		);
+		$this->db->execute();
+		return $this->db->resultset();
+	}
 
 	public function get_inventory_by_store($store) {
 		$this->db->query(
@@ -57,6 +75,12 @@ class Query {
 		);
 		$this->db->execute();
 		return $this->db->resultset();
+	}
+	
+	public function get_last_sale_date() {
+		$this->db->query( "SELECT MAX(invoiceDate) FROM sales");
+		$this->db->execute();
+		return $this->db->single();
 	}
 
 	public function get_store_list() {
@@ -177,7 +201,7 @@ class Query {
 	
 	public function get_store_sales_data_by_year($store, $year) {
 		$this->db->query(
-			"SELECT WEEK(sales.invoiceDate) 'Week', 
+			"SELECT DATE_ADD(sales.invoiceDate, INTERVAL(7-DAYOFWEEK(sales. invoiceDate)) DAY) 'End Date', 
 			SUM(sales.retail) 'Retail', 
 			SUM(sales.actual) 'Actual', 
 			SUM(Retail-Actual) 'Discount', 
@@ -186,7 +210,8 @@ class Query {
 			COUNT(DISTINCT sales.invoiceNum) 'Invoices', 
 			COUNT(DISTINCT sales.customer) 'Customers' 
 			FROM `sales` 
-			WHERE YEAR(sales.invoiceDate)=" . $year . " AND sales.storeID=" . $store . " GROUP BY WEEK(sales.invoiceDate)"
+			WHERE YEAR(sales.invoiceDate)=" . $year . " AND sales.storeID=" . $store . " GROUP BY WEEK(sales.invoiceDate) 
+			WITH ROLLUP"
 		);
 		$this->db->execute();
 		$result = $this->db->resultSet();
@@ -222,10 +247,7 @@ class Query {
 	
 	public function get_customer_brand_purchases($vendor) {
 		$this->db->query(
-			"SELECT SUM(sales.soldQty) 'Qty Purchased', sales.customer 'Customer' 
-			FROM `sales` INNER JOIN `vendors` ON sales.vendorID=vendors.id 
-			WHERE vendors.code='" . $vendor . "' AND (sales.invoiceDate>='14-10-01' AND sales.invoiceDate<='14-11-18') AND sales.storeID IN (1,3,6,10,12,13,15,16,17) AND (sales.soldQty>0 AND sales.soldQty<11) 
-			GROUP BY sales.customer ORDER BY `Qty Purchased` ASC"
+			"SELECT storeID, SUM(soldQty) 'Sold Qty', invoiceNum, SUM(retail) 'Retail' FROM sales WHERE storeID IN(1,3,6,10,12,13,15,16,17) AND vendorID=2 AND (invoiceDate>='14-10-01' AND invoiceDate<='14-11-18') GROUP BY invoiceNum ORDER BY `Sold Qty` DESC"
 		);
 		$this->db->execute();
 		$result = $this->db->resultSet();

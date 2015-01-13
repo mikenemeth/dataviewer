@@ -3,8 +3,17 @@ require_once('../config/config.php');
 require_once('../class/database.class.php');
 require_once('../class/query.class.php');
 require_once('../class/display.class.php');
-?>
+require_once('../class/utility.class.php');
 
+$database = new Database();
+$query = new Query($database);
+
+$date = $query->get_last_sale_date(); 
+
+foreach($date as $day) {
+	$maxDate =  Utility::convertMysqlDateToHtmlDate($day);
+}
+?>
     <div class="page-header">
         <h1>All Sales by Store</h1>
     </div>
@@ -30,7 +39,7 @@ require_once('../class/display.class.php');
 						<div id="endDate" class="input-group">
 							<label class="sr-only" for="enddate">End Date</label>
 							<div class="input-group-addon">End Date</div>
-							<input type="date" name="endDate" class="form-control" id="startDate" max="<?php echo date("Y-m-d"); ?>"placeholder="ex. 12/07/2014" required>
+							<input type="date" name="endDate" class="form-control" id="startDate" max="<?php echo $maxDate; ?>" placeholder="ex. 12/07/2014" required>
 						</div>
 					</div>
 				</fieldset>

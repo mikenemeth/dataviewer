@@ -99,9 +99,7 @@ Convert short date to MySql date
 
 
 			$database->execute();
-			if($database->lastInsertId()) {
-				echo "<br/ > Last sales table row ID: " . $database->lastInsertId();
-			}
+			echo "Sales rows affected: " . $database->rowCount();
 		}
 		echo "<p>All sales data added.</p>";
 	}
@@ -161,10 +159,8 @@ Convert short date to MySql date
 			$database->bind(':name', $record{'SoldTo'});
 
 			$database->execute();
-			if($database->lastInsertId()) {
-				echo "<br/ > Company row " . $database->lastInsertId() . " inserted.";
-			}
 		}
+		echo "<p>Companies added for store.</p>";
 	}
 	
 	// Adds data to CUSTOMER table
@@ -185,10 +181,8 @@ Convert short date to MySql date
 			$database->bind(':company', $record{'SoldTo'});
 
 			$database->execute();
-			if($database->lastInsertId()) {
-				echo "<br/ > Customer row " . $database->lastInsertId() . " inserted.";
-			}
 		}
+		echo "<p>Customers added for store.</p>";
 	}
 
 
@@ -206,10 +200,8 @@ Convert short date to MySql date
 			$database->bind(':code', $record{'Vendor'});
 
 			$database->execute();
-			if($database->lastInsertId()) {
-				echo "<br/ > Last vendor row ID: " . $database->lastInsertId();
-			}
 		}
+		echo "<p>Vendors added for store.</p>";
 	}
 	
 	// Adds data to ITEMS table using Sales Summary CSV format
@@ -233,10 +225,8 @@ Convert short date to MySql date
 			$database->bind(':vendor', $record{'Vendor'});
 
 			$database->execute();
-			if($database->lastInsertId()) {
-				echo "<br/ > Last item row ID: " . $database->lastInsertId();
-			}
 		}
+		echo "<p>Items added for store.</p>";
 	}
 
 		// Adds data to ITEMS table using Inventory CSV format
@@ -271,11 +261,16 @@ Convert short date to MySql date
 			$database->bind(':code', $record{'Code'});
 
 			$database->execute();
-			if($database->lastInsertId()) {
-				echo "<br/ > Last item row ID: " . $database->lastInsertId();
-			}
 		}
-	}	
+		echo "<p>More items added for store.</p>";
+	}
+	
+	public static function set_inv_upload_time($store) {
+		$database = new Database();
+		$database->query("UPDATE store SET last_inv_update=NOW() WHERE id=" . $store . "");
+		$database->execute();
+		echo "<br />Inventory update timestamp set for store" . $store . "<br />";
+	}
 	
 	// Empty inventory table can become very large over time
 	public static function emptyInventoryTable() {
