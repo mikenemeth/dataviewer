@@ -45,7 +45,7 @@ function updateSales() {
 
 // Run script
 //updateSales();
-updateInventory();
+//updateInventory();
 
 
 ?>

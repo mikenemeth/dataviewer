@@ -8,7 +8,8 @@ require_once('../class/display.class.php');
     <div class="page-header">
         <h1>Customer Buying Behavior</h1>
     </div>
-<div id="controls">	  
+<div id="controls">
+	<div class="row"><p class="col-md-12">Select a Vendor, Start Date, and End Date then click Submit.</p></div>
 	<div class="row">
 		<form id="salesReportControl" role="form" action="" method="post">	
 
@@ -16,6 +17,7 @@ require_once('../class/display.class.php');
 				<fieldset>
 					<div class="form-group">
 					<div id="vendorSelect" class="input-group">
+						<label class="sr-only" for="vendorSelect">Vendor</label>
 						<select name="vendorSelect" class="form-control" required>
 						  <option >Select Vendor...</option>
 						  <option value="CHE">Cherokee</option>

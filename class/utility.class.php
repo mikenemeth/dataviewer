@@ -73,5 +73,23 @@ class Utility {
 		$mysqlDate = date_format($dateTemp, 'y-m-d');	
 		return $mysqlDate;
 	}
+	
+	public static function getYtd() {
+		$year = date('y-m-d', strtotime('first day of this year'));
+		$today = date("y-m-d");
+		return array($year, $today);
+	}
+	
+	public static function getMtd() {
+		$month = date('y-m-d', strtotime('first day of this month'));
+		$today = date("y-m-d");
+		return array($month, $today);
+	}
+	
+	public static function getLastWeek() {
+		$startDate = date('y-m-d', strtotime('last week'));
+		$endDate = date('y-m-d', strtotime('last sunday'));
+		return array($startDate, $endDate);
+	}
 }
 ?>

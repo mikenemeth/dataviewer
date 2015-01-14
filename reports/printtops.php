@@ -15,6 +15,7 @@ $codes = array('PRINT', 'CLEAR', 'CLOSE');
 
       <div class="page-header">
         <h2>Print Top Inventory Analysis <small><?php echo "Report generated " . date("m/d/Y"); ?></small></h2>
+		<p>This report shows stocks levels by size and store for regular, clearance, and closeout print tops.</p>
       </div>
 
 		<?php

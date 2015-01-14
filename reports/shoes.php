@@ -15,6 +15,7 @@ $depts = array('FOOTW');
 
       <div class="page-header">
         <h2>Shoe Inventory Analysis <small><?php echo "Report generated " . date("m/d/Y"); ?></small></h2>
+		<p>This report shows stocks levels by size and store for all shoes.</p>
       </div>
 
 		<?php

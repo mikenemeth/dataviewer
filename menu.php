@@ -8,12 +8,12 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#" id="home" value="Home" onclick="reportLoad('reports/main.php')">HUS Data Viewer v.01</a>
+          <a class="navbar-brand" href="#" id="home" value="Home" onclick="reportLoad('main.php')">HUS Data Viewer v.01</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse" aria-expanded="false" style="height: 1px;">
 		
           <ul class="nav navbar-nav">
-            <li><a href="#" id="home" value="Home" onclick="reportLoad('reports/main.php')">Home</a></li>
+            <li><a href="#" id="home" value="Home" onclick="reportLoad('main.php')">Home</a></li>
 			
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Sales<span class="caret"></span></a>
@@ -29,7 +29,7 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Inventory<span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
 				<li><a href="#" id="inventoryAnalysis" value="inventory_report.php" onclick="reportLoad('reports/inventory_report.php')">Truck Inventory Analysis</a></li>
-                <li><a href="#" id="inventoryReport" value="inventory.php" onclick="reportLoad('reports/inventory.php')">Inventory by Store</a></li>
+                <li><a href="#" id="inventoryReport" value="inventory.php" onclick="reportLoad('reports/inventorybystore-control.php')">Inventory by Store</a></li>
                 <li><a href="#" id="printTopReport" value="Print Top Analysis" onclick="reportLoad('reports/printtops.php')">Print Top Analysis</a></li>
                 <li><a href="#" id="shoeReport" value="Shoe Analysis" onclick="reportLoad('reports/shoes.php')">Shoe Analysis</a></li>
               </ul>

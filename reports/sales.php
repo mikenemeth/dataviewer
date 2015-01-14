@@ -17,10 +17,10 @@ foreach($date as $day) {
     <div class="page-header">
         <h1>All Sales by Store</h1>
     </div>
-<div id="controls">	  
+<div id="controls">
+	<div class="row"><p class="col-md-12">Enter a Start Date and End Date to see all sales totals for all stores.</p></div>
 	<div class="row">
 		<form id="salesReportControl" role="form" action="" method="post">	
-				
 			<div class="col-md-3">
 				<fieldset>
 					<div class="form-group">

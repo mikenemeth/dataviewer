@@ -1,4 +1,6 @@
 <?php 
+require_once('utility.class.php');
+
 class Query {
 
 	
@@ -79,6 +81,18 @@ class Query {
 	
 	public function get_last_sale_date() {
 		$this->db->query( "SELECT MAX(invoiceDate) FROM sales");
+		$this->db->execute();
+		return $this->db->single();
+	}
+	
+	public function get_ytd_sales() {
+		$this->db->query("SELECT `value` FROM stats WHERE name='ytd_sales'");
+		$this->db->execute();
+		return $this->db->single();
+	}
+	
+	public function get_mtd_sales() {
+		$this->db->query("SELECT `value` FROM stats WHERE name='mtd_sales'");
 		$this->db->execute();
 		return $this->db->single();
 	}
@@ -230,13 +244,14 @@ class Query {
 			"SELECT sales.invoiceDate 'Date', SUM(retail) AS Retail, SUM(actual) AS Actual, SUM(retail-actual) AS Discount, (SELECT (SUM(retail)-SUM(actual))/SUM(retail)*100) As Percent, COUNT(DISTINCT sales.invoiceNum) 'Invoices' 
 			FROM `sales` 
 			JOIN `company` ON sales.companyID=company.id 
-			WHERE company.accountNum='" . $facility . "' AND sales.actual>0 
+			WHERE company.name='" . $facility . "' OR company.accountNum='" . $facility . "' AND sales.actual>0 
 			GROUP BY sales.invoiceDate 
-			ORDER BY sales.invoiceDate ASC"
+			ORDER BY sales.invoiceDate DESC"
 		);
 		$this->db->execute();
 		$result = $this->db->resultSet();
 		foreach($result as $field=>$value) {
+			$result[$field]['Date'] = Utility::convertMysqlDateToShortDate($result[$field]['Date']);
 			$result[$field]['Retail'] = '$' . number_format($value['Retail'],2);
 			$result[$field]['Actual'] = '$' . number_format($value['Actual'],2);
 			$result[$field]['Discount'] = '$' . number_format($value['Discount'],2);
@@ -252,6 +267,13 @@ class Query {
 		$this->db->execute();
 		$result = $this->db->resultSet();
 		
+		foreach ($rows as $row) {
+			foreach ($row as $field=>$value) {
+				echo $value;
+			}
+		}
+		
+		return $result;
 		var_dump($result);
 	}
 }

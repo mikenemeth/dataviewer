@@ -8,10 +8,10 @@ require_once('../class/display.class.php');
     <div class="page-header">
         <h1>Sales by Week</h1>
     </div>
-<div id="controls">	  
+<div id="controls">
+	<div class="row"><p class="col-md-12">Select a Store Number and Year to generate a sales by week report.</p></div>
 	<div class="row">
 		<form id="salesReportControl" role="form" action="" method="post">	
-
 			<div class="col-md-3">
 				<fieldset>
 					<div class="form-group">

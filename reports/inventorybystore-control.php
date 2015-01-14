@@ -7,7 +7,8 @@ require_once('../class/display.class.php');
     <div class="page-header">
         <h1>Inventory by Store</h1>
     </div>
-<div id="controls">	  
+<div id="controls">
+	<div class="row"><p class="col-md-12">Select a store to view its inventory information.</p></div>
 	<div class="row">
 		<form id="inventoryReportControl" role="form" action="" method="post">	
 

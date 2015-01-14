@@ -11,15 +11,16 @@ $query = new Query($database);
 $year = 2014;
 $stores = array(1,3,6,10,12,13,15,16,17);
 $ues = array(2,7,8);
-$yearRange = array('15-01-01', '15-01-09');
-$monthRange = array('15-01-01', '15-01-09');
-$lastWeek = array('15-01-04', '15-01-10');
+$yearRange = Utility::getYtd();
+$monthRange = Utility::getMtd();
+$lastWeek = Utility::getLastWeek();
 
 ?>
 <div id="wrapper">
 
       <div class="page-header">
         <h1>Discounts Report for All Trucks</h1>
+		<p>This report displays year-to-date, month-to-date, and last week's truck sales with discounts.</p>
       </div>
 	  
 
