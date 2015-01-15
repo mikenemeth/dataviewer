@@ -19,18 +19,16 @@ require_once('../class/display.class.php');
 			<div class="col-md-4">
 				<fieldset>
 					<div class="form-group">
-					<div id="facilitySelect" class="input-group">
-						<input type="text" class="search" id="searchid" name="facilitySelect" placeholder="Enter facility name or account number..." onkeyup="autocomplet()"/>Ex. "Ely Manor" or "23676-12"<br />
-					</div>
+						<div id="facilitySelect" class="input-group">
+							<input type="text" class="search form-control" id="searchid" name="facilitySelect" placeholder="Enter facility name or account number..." onkeyup="autocomplet()"/>Ex. "Ely Manor" or "23676-12"
+						</div>
+						<ul id="result" class="list-group"></ul>
 					</div>
 				</fieldset>
 			</div>
 			
 			<button type="button" id="submit_btn" class="btn btn-primary" name="submit" value="submit" onclick="getSalesReport('reports/salesbyfacility.php')">Submit</button>
 		</form>
-	</div>
-	<div class="row">
-		<ul id="result"></ul>
 	</div>
 </div>
 

@@ -19,7 +19,7 @@ $db->execute();
 $results = $db->resultSet();
 
 foreach($results as $result) {
-		echo '<li onclick="set_item(\''.str_replace("'", "\'", $result['name']).'\')">' . $result['name'] . " : " . $result['accountNum'] . '</li>';
+		echo '<li class="list-group-item ac-result-list" onclick="set_item(\''.str_replace("'", "\'", $result['name']).'\')"><span class="badge">' . $result['accountNum'] . '</span>' .  $result['name'] . '</li>';
 
 }
 ?>

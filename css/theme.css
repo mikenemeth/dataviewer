@@ -16,3 +16,14 @@ body {
 .theme-showcase .navbar .container {
   width: auto;
 }
+
+.form-group #result {
+	position: absolute;
+	float: left;
+	top: 50%;
+	z-index: 1000;
+}
+
+.ac-result-list {
+	cursor: pointer;
+}

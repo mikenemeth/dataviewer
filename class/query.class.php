@@ -246,12 +246,14 @@ class Query {
 			JOIN `company` ON sales.companyID=company.id 
 			WHERE company.name='" . $facility . "' OR company.accountNum='" . $facility . "' AND sales.actual>0 
 			GROUP BY sales.invoiceDate 
-			ORDER BY sales.invoiceDate DESC"
+			ORDER BY `Date` DESC"
 		);
 		$this->db->execute();
 		$result = $this->db->resultSet();
 		foreach($result as $field=>$value) {
-			$result[$field]['Date'] = Utility::convertMysqlDateToShortDate($result[$field]['Date']);
+			if($result[$field]['Date'] != 'Total') {
+				$result[$field]['Date'] = Utility::convertMysqlDateToShortDate($result[$field]['Date']);
+			}
 			$result[$field]['Retail'] = '$' . number_format($value['Retail'],2);
 			$result[$field]['Actual'] = '$' . number_format($value['Actual'],2);
 			$result[$field]['Discount'] = '$' . number_format($value['Discount'],2);

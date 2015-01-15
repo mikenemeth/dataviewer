@@ -4,6 +4,7 @@ require_once('../class/database.class.php');
 require_once('../class/dataupload.class.php');
 require_once('../class/display.class.php');
 require_once('../class/query.class.php');
+require_once('../class/export.class.php');
 
 $facility = $_REQUEST['facilitySelect'];
 
