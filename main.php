@@ -39,7 +39,6 @@ $query = new Query($db);
 				<li>Inventory by Store: Displays current inventory for a given store</li>
 				<li>Print Top Analysis: Displays current inventory of print tops for all stores</li>
 				<li>Shoe Analysis: Displays current inventory of shoes for all stores</li>
-				<li>Purchases by Vendor: Displays customer buying patterns for a given vendor</li>
 			</ul>
 		</div> <!-- col-sm-12 -->
 	</div>

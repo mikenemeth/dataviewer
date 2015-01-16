@@ -6,15 +6,18 @@ require_once('class/display.class.php');
 
 $db = new Database();
 
-$q = $_POST['keyword'];
+$q = '%' . $_POST['keyword'] . '%';
 
 $db->query(
 	"SELECT name, accountNum 
 	FROM company 
-	WHERE name LIKE '%" . $q . "%' OR accountNum LIKE '%" . $q . "%' 
+	WHERE name LIKE :q OR accountNum LIKE :q 
 	ORDER BY name 
 	LIMIT 0, 10"
 );
+
+$db->bind(':q', $q);
+
 $db->execute();
 $results = $db->resultSet();
 

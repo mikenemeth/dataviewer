@@ -244,10 +244,13 @@ class Query {
 			"SELECT sales.invoiceDate 'Date', SUM(retail) AS Retail, SUM(actual) AS Actual, SUM(retail-actual) AS Discount, (SELECT (SUM(retail)-SUM(actual))/SUM(retail)*100) As Percent, COUNT(DISTINCT sales.invoiceNum) 'Invoices' 
 			FROM `sales` 
 			JOIN `company` ON sales.companyID=company.id 
-			WHERE company.name='" . $facility . "' OR company.accountNum='" . $facility . "' AND sales.actual>0 
+			WHERE company.name=:facility OR company.accountNum=:facility AND sales.actual>0 
 			GROUP BY sales.invoiceDate 
 			ORDER BY `Date` DESC"
 		);
+		
+		$this->db->bind(':facility', $facility);
+		
 		$this->db->execute();
 		$result = $this->db->resultSet();
 		foreach($result as $field=>$value) {
@@ -260,23 +263,6 @@ class Query {
 			$result[$field]['Percent'] = number_format($value['Percent'],2) . '%';
 		}
 		return $result;
-	}
-	
-	public function get_customer_brand_purchases($vendor) {
-		$this->db->query(
-			"SELECT storeID, SUM(soldQty) 'Sold Qty', invoiceNum, SUM(retail) 'Retail' FROM sales WHERE storeID IN(1,3,6,10,12,13,15,16,17) AND vendorID=2 AND (invoiceDate>='14-10-01' AND invoiceDate<='14-11-18') GROUP BY invoiceNum ORDER BY `Sold Qty` DESC"
-		);
-		$this->db->execute();
-		$result = $this->db->resultSet();
-		
-		foreach ($rows as $row) {
-			foreach ($row as $field=>$value) {
-				echo $value;
-			}
-		}
-		
-		return $result;
-		var_dump($result);
 	}
 }
 ?>
