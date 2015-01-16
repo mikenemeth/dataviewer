@@ -6,8 +6,8 @@ Use: To add new items to the menu, add the desired
 menu, submenu items, and pages to the array below.
 
 Example:  If you would like to add a "Customer" category 
-with a new type of report, the following would be added 
-after the "Inventory" array:
+with a new type of report called "MyReport", the following 
+would be added after the "Inventory" array:
 
 	'Customer'	=>	array(
 								'My Report'	=>	'reports/myreport.php',
@@ -22,7 +22,7 @@ $menu = array(
 							'Sales by Facility'	=>	'reports/salesbyfacility-control.php'
 						),
 	'Inventory'	=>	array(
-								'Truck Inventory Analysis'	=>	'reports/inventory_report.php', 
+								'Truck Inventory Analysis'	=>	'reports/inventoryreport-control.php', 
 								'Inventory by Store'			=>	'reports/inventorybystore-control.php', 
 								'Print Top Analysis'			=>	'reports/printtops.php', 
 								'Shoe Analysis'					=>	'reports/shoes.php'

@@ -35,21 +35,20 @@ class Query {
 		return $this->db->resultset();
 	}
 	
-	public function get_inventory($stores, $vendorArray) {
-		if(is_array($stores)) {
-			$stores = implode(",", $stores);
-		}
+	public function get_inventory_analysis($vendorArray, $period, $targetWeeks) {
 		if(is_array($vendorArray)) {
-			$vendorArray = implode(",", $vendorArray);
+			$vendorArray = implode(" OR ", $vendorArray);
 		}
 		$this->db->query(
 			"SELECT vendors.code AS Vendor, SUM(inventory.instock) AS InStock, SUM(inventory.onorder) AS OnOrder, SUM(inventory.min) AS MinMax, (SUM(inventory.onorder) + SUM(inventory.instock))-SUM(inventory.min) 'MinMax +/-'
 			FROM `inventory`, `vendors`, `items` 
-			WHERE inventory.storeID=(" . $stores . ")  AND vendors.code IN (" . $vendorArray . ") AND inventory.min>0 
+			WHERE inventory.storeID=" . $store . " AND vendors.code=(" . $vendorArray . ") AND inventory.min>0 
 			AND (items.vendorID=vendors.id AND items.id=inventory.itemID) 
 			GROUP BY Vendor"
 		);
 		$this->db->execute();
+		$result = $this->db->resultset();
+		var_dump($result);
 		return $this->db->resultset();
 	}
 
@@ -230,12 +229,18 @@ class Query {
 		$this->db->execute();
 		$result = $this->db->resultSet();
 		
+		$counter = count($result); // set counter to find last result record
 		foreach($result as $field=>$value) {
+			--$counter;
+			if(!$counter) {
+				$result[$field]['End Date'] = 'Total'; // label the rollup otherwise the end date is output again
+			}
 			$result[$field]['Retail'] = '$' . number_format($value['Retail'],2);
 			$result[$field]['Actual'] = '$' . number_format($value['Actual'],2);
 			$result[$field]['Discount'] = '$' . number_format($value['Discount'],2);
 			$result[$field]['Percent'] = number_format($value['Percent'],2) . '%';
 		}
+		
 		return $result;
 	}
 	

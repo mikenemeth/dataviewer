@@ -18,12 +18,6 @@ $query = new Query($db);
 			<p>This system is intended to save you time in reporting and help find things that may need your attention. This reporting system allows you to view sales and inventory reports and help you analyze that information. Sales and inventory data is not live, but is exported nightly at 2:00am from Uniform Solutions.</p>
 			<p>Built with: HTML5, CSS3, PHP, MYSQL</p>
 		</div> <!-- col-sm-6 -->
-		
-		<div class='col-sm-6'>
-			<h3>Using the Data Viewer</h3>
-			<p>This system is intended to save you time in reporting and help find things that may need your attention. This reporting system allows you to view sales and inventory reports and help you analyze that information. Sales and inventory data is not live, but is exported nightly at 2:00am from Uniform Solutions.</p>
-			<p>Built with: HTML5, CSS3, PHP, MYSQL</p>
-		</div> <!-- col-sm-6 -->
 	</div>
 	
 	<div class="row">

@@ -8,17 +8,10 @@ require_once('../class/utility.class.php');
 $database = new Database();
 $query = new Query($database);
 
-$stores = array(1);
 $vendors = array('CHE', 'KOI', 'WKS', 'WCS');
 
 ?>
 <div id="wrapper">
-
-      <div class="page-header">
-        <h1>Truck Inventory Analysis</h1>
-      </div>
-	  
-
       <div class="page-header">
         <h3>Truck Inventory</h3>
       </div>
@@ -26,7 +19,7 @@ $vendors = array('CHE', 'KOI', 'WKS', 'WCS');
         <div class="col-md-12">
 			<?php
 				$headings = array('Vendor', 'In Stock', 'On Order', 'Min/Max', 'Min/Max +/-');
-				$rows = $query->get_inventory($stores, $vendors);
+				$rows = $query->get_inventory_analysis($vendors, 12, 4.5);
 				Display::displayTable($headings, $rows);
 			?>
 		</div>
