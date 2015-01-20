@@ -35,21 +35,34 @@ class Query {
 		return $this->db->resultset();
 	}
 	
-	public function get_inventory_analysis($vendorArray, $period, $targetWeeks) {
+	public function get_inventory_analysis($store, $vendorArray, $period, $targetWeeks) {
 		if(is_array($vendorArray)) {
-			$vendorArray = implode(" OR ", $vendorArray);
+			$vendorArray = '\'' . implode("','", $vendorArray) . '\'';
 		}
+        
+        $this->db->query(
+            "SELECT v.code 'Vendor', SUM(s.soldQty) 'Pieces' 
+            FROM sales s 
+            INNER JOIN vendors v ON v.id=s.vendorID 
+            WHERE (s.invoiceDate BETWEEN '14-10-01' AND '14-12-31') AND s.storeID=1 
+            AND v.code IN (" . $vendorArray . ") GROUP BY Vendor"
+        );
+        $this->db->execute();
+        $sales = $this->db->resultSet();
+        
 		$this->db->query(
-			"SELECT vendors.code AS Vendor, SUM(inventory.instock) AS InStock, SUM(inventory.onorder) AS OnOrder, SUM(inventory.min) AS MinMax, (SUM(inventory.onorder) + SUM(inventory.instock))-SUM(inventory.min) 'MinMax +/-'
-			FROM `inventory`, `vendors`, `items` 
-			WHERE inventory.storeID=" . $store . " AND vendors.code=(" . $vendorArray . ") AND inventory.min>0 
+			"SELECT vendors.code AS 'Vendor', SUM(inventory.instock) AS InStock, SUM(inventory.onorder) AS OnOrder, SUM(inventory.min) AS MinMax, (SUM(inventory.onorder) + SUM(inventory.instock))-SUM(inventory.min) 'MinMax +/-'
+			FROM `inventory` 
+            INNER JOIN `items` ON inventory.itemID=items.id 
+            INNER JOIN `vendors` ON items.vendorID=vendors.id 
+			WHERE inventory.storeID=" . $store . " AND vendors.code IN (" . $vendorArray . ") AND inventory.min>0 
 			AND (items.vendorID=vendors.id AND items.id=inventory.itemID) 
 			GROUP BY Vendor"
 		);
 		$this->db->execute();
-		$result = $this->db->resultset();
-		var_dump($result);
-		return $this->db->resultset();
+		$inventory = $this->db->resultset();
+        
+		return $inventory;
 	}
 
 	public function get_inventory_by_store($store) {
