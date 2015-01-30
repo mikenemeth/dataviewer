@@ -163,6 +163,36 @@ Convert short date to MySql date
 		echo "<p>Companies added for store.</p>";
 	}
 	
+	private function updateContactInfo() {
+	
+		$database = new Database();
+
+		foreach($this->aryData as $record) {
+					
+			$database->query(
+				"UPDATE company SET `name`=:name, `address1`=:address1, `address2`=:address2, `address3`=:address3, `city`=:city, `state`=:state, `postal_code`=:postal_code, `phone`=:phone, `fax`=:fax, `email`=:email, `class`=:class, `contact`=:contact
+				WHERE accountNum =:account"
+			);
+				
+			$database->bind(':account', $record{'combined_acct'});
+			$database->bind(':name', $record{'company'});
+			$database->bind(':address1', $record{'address_1'});
+			$database->bind(':address2', $record{'address_2'});
+			$database->bind(':address3', $record{'address_3'});
+			$database->bind(':city', $record{'city'});
+			$database->bind(':state', $record{'state'});
+			$database->bind(':postal_code', $record{'zip'});
+			$database->bind(':phone', $record{'phone'});
+			$database->bind(':fax', $record{'fax'});
+			$database->bind(':email', $record{'email'});
+			$database->bind(':class', $record{'class'});
+			$database->bind(':contact', $record{'contact'});
+
+			$database->execute();
+		}
+		echo "<p>Company information updated.</p>";
+	}
+	
 	// Adds data to CUSTOMER table
 	private function addCustomers() {
 	
@@ -293,6 +323,11 @@ Convert short date to MySql date
 		$this->addVendors();
 		$this->addItemsInventory();
 		$this->addInventory($storeNumber);
+	}
+	
+	public function uploadCompanyData() {
+		
+		$this->updateContactInfo();
 	}
 
 }

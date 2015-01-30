@@ -43,9 +43,19 @@ function updateSales() {
 	$upload->uploadSalesData();
 }
 
+function updateCompanyInfo() {
+	
+	$inputFile = COMPANY_FILE;
+	$upload = new DataUpload($inputFile);
+	echo "Parsing company info file...";
+	$upload->readCSV();
+	$upload->uploadCompanyData();
+}
+
 // Run script
 //updateSales();
 //updateInventory();
+updateCompanyInfo();
 
 
 ?>
