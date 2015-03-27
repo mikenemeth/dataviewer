@@ -299,7 +299,7 @@ Convert short date to MySql date
 		$database = new Database();
 		$database->query("UPDATE store SET last_inv_update=NOW() WHERE id=" . $store . "");
 		$database->execute();
-		echo "<br />Inventory update timestamp set for store" . $store . "<br />";
+		echo "<br />Inventory update timestamp set for store " . $store . "<br />";
 	}
 	
 	// Empty inventory table can become very large over time

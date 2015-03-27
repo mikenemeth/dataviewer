@@ -55,7 +55,7 @@ function updateCompanyInfo() {
 // Run script
 //updateSales();
 //updateInventory();
-updateCompanyInfo();
+//updateCompanyInfo();
 
 
 ?>
